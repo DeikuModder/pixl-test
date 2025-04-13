@@ -21,7 +21,12 @@ const ProductsContainer = ({
   return (
     <div className="p-4 flex flex-wrap items-center gap-4">
       {productEvents.map((product: ProductEvent) => (
-        <SellingProducts key={product.id} {...product} role={role} />
+        <SellingProducts
+          key={product.id}
+          {...product}
+          idFromUser={id}
+          role={role}
+        />
       ))}
     </div>
   );

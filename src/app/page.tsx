@@ -17,7 +17,7 @@ export default async function Home() {
     id: event.id.toString(),
   }));
 
-  const { role } = await getAuthenticatedUser();
+  const { role, id } = await getAuthenticatedUser();
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-[#acacff]">
@@ -59,7 +59,12 @@ export default async function Home() {
       {/* Products */}
       <section className="p-4 sm:p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
         {formattedEvents.map((product: ProductEvent) => (
-          <SellingProducts key={product.id} {...product} role={role} />
+          <SellingProducts
+            key={product.id}
+            {...product}
+            role={role}
+            idFromUser={id}
+          />
         ))}
       </section>
     </div>

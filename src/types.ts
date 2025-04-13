@@ -12,5 +12,5 @@ export interface ProductEvent {
   price: number;
   user_id: string;
   date: string;
-  image?: string;
+  image_url: string | null;
 }

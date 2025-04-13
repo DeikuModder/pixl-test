@@ -14,25 +14,30 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FormEventHandler, useState } from "react";
 import { useDeleteProductEvent, useUpdateProductEvent } from "@/hooks/events";
+import Image from "next/image";
 
 type SellingProductProps = {
   id: string;
+  idFromUser: string;
   role: "admin" | "user";
   title: string;
   description: string;
   date: string;
   price: number;
-  image?: string;
+  user_id: string;
+  image_url: string | null;
 };
 
 const SellingProducts = ({
   id,
+  idFromUser,
   role,
   title,
   description,
   date,
   price,
-  image,
+  user_id,
+  image_url,
 }: SellingProductProps) => {
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -71,10 +76,15 @@ const SellingProducts = ({
 
   return (
     <article className="w-[300px] h-[400px] border border-muted rounded-2xl p-4 shadow-sm bg-background flex flex-col justify-between gap-2">
-      {image && (
-        <div className="h-[150px] w-full relative overflow-hidden rounded-md">
-          {/**eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} alt={title} className="object-cover object-center" />
+      {image_url && (
+        <div className="h-[200px] w-full relative overflow-hidden rounded-md">
+          <Image
+            src={image_url}
+            alt={title}
+            width={300}
+            height={200}
+            className="object-cover object-center"
+          />
         </div>
       )}
 
@@ -85,7 +95,7 @@ const SellingProducts = ({
         <p className="text-primary font-bold">${price}</p>
       </div>
 
-      {role === "admin" ? (
+      {role === "admin" && idFromUser === user_id ? (
         <div className="flex justify-end gap-2 mt-2">
           {/* Edit Dialog */}
           <Dialog open={editOpen} onOpenChange={setEditOpen}>
@@ -117,7 +127,7 @@ const SellingProducts = ({
                 <Input
                   type="url"
                   placeholder="Image URL (optional)"
-                  defaultValue={image}
+                  defaultValue={image_url ? image_url : ""}
                   name="image"
                 />
                 <DialogFooter>
@@ -169,7 +179,7 @@ const SellingProducts = ({
           </Dialog>
         </div>
       ) : (
-        <Dialog open={editOpen} onOpenChange={setEditOpen}>
+        <Dialog>
           <DialogTrigger asChild>
             <Button variant="outline" size="sm">
               Buy

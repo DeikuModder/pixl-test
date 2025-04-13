@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { title, description, price, date, user_id, image } =
+    const { title, description, price, date, user_id, image_url } =
       await req.json();
 
     if (!title || !description || !price || !date || !user_id) {
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         date,
         user_id: parsedUserId,
         // image is optional, so we include it conditionally
-        ...(image && { image }),
+        ...(image_url && { image_url }),
       },
     });
 

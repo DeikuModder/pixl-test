@@ -33,7 +33,6 @@ import { ProductEvent } from "@/types";
 export default async function Page() {
   const { role, id } = await getAuthenticatedUser();
   const events = await prisma.event.findMany({
-    orderBy: { date: "desc" },
     where: { user_id: id },
   });
 
