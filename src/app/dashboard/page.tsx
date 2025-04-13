@@ -1,6 +1,7 @@
 import AddProduct from "@/components/dashboard/add-product";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import ProductsContainer from "@/components/dashboard/product-container";
+import UserTransactions from "@/components/dashboard/user-transactions";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -11,27 +12,8 @@ import { getAuthenticatedUser } from "@/lib/getUserData";
 import { prisma } from "@/lib/prisma";
 import { ProductEvent } from "@/types";
 
-// const products = [
-//   {
-//     id: "1",
-//     title: "Wireless Headphones",
-//     description: "High-quality noise-canceling headphones.",
-//     date: "2025-04-12",
-//     price: 129.99,
-//     image: "https://images.unsplash.com/photo-1517849845537-4d257902454a",
-//   },
-//   {
-//     id: "2",
-//     title: "Gaming Keyboard",
-//     description: "RGB mechanical keyboard with blue switches.",
-//     date: "2025-04-10",
-//     price: 89.99,
-//     image: "https://images.unsplash.com/photo-1587202372775-98973d07f3f3",
-//   },
-// ];
-
 export default async function Page() {
-  const { role, id } = await getAuthenticatedUser();
+  const { role, id, email } = await getAuthenticatedUser();
   const events = await prisma.event.findMany({
     where: { user_id: id },
   });
@@ -54,10 +36,21 @@ export default async function Page() {
         {role === "admin" && <AddProduct userId={id} />}
 
         {/* Product Cards */}
-        {events ? (
-          <ProductsContainer role={role} events={formattedEvents} id={id} />
+        {role === "admin" ? (
+          <>
+            {events ? (
+              <ProductsContainer
+                role={role}
+                events={formattedEvents}
+                id={id}
+                email={email}
+              />
+            ) : (
+              <p>No products added yet!</p>
+            )}
+          </>
         ) : (
-          <p>No products added yet!</p>
+          <UserTransactions id={id} />
         )}
       </SidebarInset>
     </SidebarProvider>

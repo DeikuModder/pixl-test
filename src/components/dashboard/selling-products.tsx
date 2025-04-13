@@ -15,10 +15,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { FormEventHandler, useState } from "react";
 import { useDeleteProductEvent, useUpdateProductEvent } from "@/hooks/events";
 import Image from "next/image";
+import { createStripeSession } from "@/lib/createStripeSession";
 
 type SellingProductProps = {
   id: string;
   idFromUser: string;
+  email: string;
   role: "admin" | "user";
   title: string;
   description: string;
@@ -31,6 +33,7 @@ type SellingProductProps = {
 const SellingProducts = ({
   id,
   idFromUser,
+  email,
   role,
   title,
   description,
@@ -179,21 +182,25 @@ const SellingProducts = ({
           </Dialog>
         </div>
       ) : (
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline" size="sm">
-              Buy
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Buy Product</DialogTitle>
-              <DialogDescription>
-                Update the details of your product.
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={async () => {
+            try {
+              const url = await createStripeSession({
+                title,
+                price,
+                id,
+                email,
+              });
+              window.location.href = url; // Redirect to Stripe
+            } catch (err) {
+              console.log(err);
+            }
+          }}
+        >
+          Buy
+        </Button>
       )}
     </article>
   );

@@ -17,7 +17,7 @@ export default async function Home() {
     id: event.id.toString(),
   }));
 
-  const { role, id } = await getAuthenticatedUser();
+  const { role, id, email } = await getAuthenticatedUser();
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-[#acacff]">
@@ -64,6 +64,7 @@ export default async function Home() {
             {...product}
             role={role}
             idFromUser={id}
+            email={email}
           />
         ))}
       </section>

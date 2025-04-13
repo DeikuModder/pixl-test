@@ -8,10 +8,12 @@ const ProductsContainer = ({
   events,
   role,
   id,
+  email,
 }: {
   events: ProductEvent[];
   role: "admin" | "user";
   id: string;
+  email: string;
 }) => {
   const { data: productEvents = [] } = useProductEvent({
     id,
@@ -26,6 +28,7 @@ const ProductsContainer = ({
           {...product}
           idFromUser={id}
           role={role}
+          email={email}
         />
       ))}
     </div>

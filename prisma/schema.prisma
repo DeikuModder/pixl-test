@@ -38,6 +38,4 @@ model Transaction {
   event_id   String
   status     String
   price      Float
-
-  @@id([id, user_id, event_id, status, price])
 }
