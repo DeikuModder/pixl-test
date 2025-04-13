@@ -77,7 +77,7 @@ Demo Accounts:
 
 In order to test the stripe payments:
 
-1. Install & run Stripe CLI (for this is necesary to login, easiest way is to use the secret api key i left in .env)
+1. Install & run Stripe CLI (for this is necesary to login, easiest way is to use the secret api key i left in .env) https://docs.stripe.com/stripe-cli?install-method=windows
 2. Use and keep it running to let it listen to the checkout event
 ```
 stripe listen --forward-to localhost:3000/api/webhooks/stripe
