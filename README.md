@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PixlHub - E-commerce Platform
 
-## Getting Started
+A simple e-commerce platform with user authentication, product listings, and dashboard management.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- User authentication (login/signup)
+- Product listing & management
+- Admin dashboard for product CRUD operations
+- Responsive design
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 (App Router), React 19, TypeScript
+- **Styling**: Tailwind CSS, ShadCN UI components
+- **Database**: Supabase (PostgreSQL + Storage)
+- **Authentication**: JWT cookies
+- **State Management**: React Query
+- **ORM**: Prisma
+
+## Project Structure
+
+```
+src/
+├── app/ # Next.js routes
+├── components/ # Reusable components
+├── hooks/ # Custom hooks
+├── lib/ # Utility functions
+├── prisma/ # Database schema
+└── types/ # TypeScript types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Clone the repository
+```bash
+git clone [your-repo-url]
+cd pixlhub
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-## Learn More
+### 3. Setup environments variables
+```bash
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+JWT_SECRET=your-jwt-secret
 
-To learn more about Next.js, take a look at the following resources:
+# Database
+DATABASE_URL=your-postgres-url
+DIRECT_URL=your-postgres-direct-url
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Setup database
+```bash
+npx prisma migrate dev --name init
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Run the development server
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+Open http://localhost:3000 to view the app.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Demo Accounts:
+- Admin: admin@test.com / test123
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- User: test@example.com / test123
