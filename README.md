@@ -26,15 +26,14 @@ src/
 ├── components/ # Reusable components
 ├── hooks/ # Custom hooks
 ├── lib/ # Utility functions
-├── prisma/ # Database schema
-└── types/ # TypeScript types
+└── types.tsx # TypeScript types
 ```
 
 ## Setup Instructions
 
 ### 1. Clone the repository
 ```bash
-git clone [your-repo-url]
+git clone https://github.com/DeikuModder/pixl-test
 cd pixlhub
 ```
 
