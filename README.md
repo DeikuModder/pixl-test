@@ -7,6 +7,7 @@ A simple e-commerce platform with user authentication, product listings, and das
 - User authentication (login/signup)
 - Product listing & management
 - Admin dashboard for product CRUD operations
+- User can perform payments using Stripe
 - Responsive design
 
 ## Tech Stack
@@ -25,6 +26,7 @@ src/
 ├── app/ # Next.js routes
 ├── components/ # Reusable components
 ├── hooks/ # Custom hooks
+├── providers/ # Context providers
 ├── lib/ # Utility functions
 └── types.tsx # TypeScript types
 ```
@@ -70,6 +72,18 @@ Demo Accounts:
 - Admin: admin@test.com / test123
 
 - User: test@example.com / test123
+
+### Payment setup
+
+In order to test the stripe payments:
+
+1. Install & run Stripe CLI (for this is necesary to login, easiest way is to use the secret api key i left in .env)
+2. Use and keep it running to let it listen to the checkout event
+```
+stripe listen --forward-to localhost:3000/api/webhooks/stripe
+```
+3. Important to have the Webhook secret on the .env
+4. Test using one of the testing cards Stripe offers: https://docs.stripe.com/testing
 
 ### Notes
 
