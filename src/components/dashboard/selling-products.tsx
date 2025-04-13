@@ -73,6 +73,7 @@ const SellingProducts = ({
     <article className="w-[300px] h-[400px] border border-muted rounded-2xl p-4 shadow-sm bg-background flex flex-col justify-between gap-2">
       {image && (
         <div className="h-[150px] w-full relative overflow-hidden rounded-md">
+          {/**eslint-disable-next-line @next/next/no-img-element */}
           <img src={image} alt={title} className="object-cover object-center" />
         </div>
       )}
@@ -120,7 +121,11 @@ const SellingProducts = ({
                   name="image"
                 />
                 <DialogFooter>
-                  <Button type="submit" disabled={isPendingUpdate}>
+                  <Button
+                    type="submit"
+                    disabled={isPendingUpdate}
+                    className="bg-[#1b871b] hover:bg-[#52b452]"
+                  >
                     {isPendingUpdate ? "Updating..." : "Save"}
                   </Button>
                 </DialogFooter>
@@ -131,7 +136,11 @@ const SellingProducts = ({
           {/* Delete Dialog */}
           <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
             <DialogTrigger asChild>
-              <Button variant="destructive" size="sm">
+              <Button
+                variant="destructive"
+                size="sm"
+                className="bg-[#1b871b] hover:bg-[#52b452]"
+              >
                 Delete
               </Button>
             </DialogTrigger>
@@ -151,6 +160,7 @@ const SellingProducts = ({
                   variant="destructive"
                   onClick={handleDelete}
                   disabled={isPending}
+                  className="bg-[#1b871b] hover:bg-[#52b452]"
                 >
                   {isPending ? "Deleting..." : "Confirm Delete"}
                 </Button>

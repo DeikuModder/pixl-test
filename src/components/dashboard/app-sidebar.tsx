@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import {
   Sidebar,
@@ -17,23 +19,28 @@ import Link from "next/link";
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="bg-[#1c1c87] text-center">
         <Link
           href="/"
           className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
         >
           {/* Placeholder for logo */}
-          MyLogo
+          Pixl<span className="text-[#b45252]">Hub</span>
         </Link>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="bg-[#1c1c87]">
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-white">
+            Navigation
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive>
+                <SidebarMenuButton
+                  asChild
+                  className="hover:bg-[#6767c6] hover:text-white"
+                >
                   <Link href="/dashboard" className="flex items-center gap-2">
                     <LayoutDashboard size={18} />
                     My products

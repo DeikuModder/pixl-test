@@ -44,12 +44,12 @@ export default async function Page() {
 
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <h2>Welcome to your dashboard!</h2>
+      <AppSidebar className="text-white bg-[#1c1c87]" />
+      <SidebarInset className="bg-gradient-to-b from-white to-[#acacff]">
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-[#1c1c87] text-white">
+          <SidebarTrigger className="-ml-1 bg-[#0c0c38]" />
+          <Separator orientation="vertical" className="mr-2 h-4 bg-[#0c0c38]" />
+          <h2 className="font-semibold">Welcome to your dashboard!</h2>
         </header>
 
         {role === "admin" && <AddProduct userId={id} />}

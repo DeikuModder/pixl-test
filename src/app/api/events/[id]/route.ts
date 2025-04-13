@@ -2,13 +2,10 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-type Context = {
-  params: {
-    id: string;
-  };
-};
-
-export async function GET(_: Request, { params }: Context) {
+export async function GET(
+  _: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await params;
 
@@ -34,7 +31,10 @@ export async function GET(_: Request, { params }: Context) {
   }
 }
 
-export async function DELETE(_: Request, { params }: Context) {
+export async function DELETE(
+  _: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await params;
 
@@ -61,7 +61,10 @@ export async function DELETE(_: Request, { params }: Context) {
   }
 }
 
-export async function PATCH(req: NextRequest, { params }: Context) {
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   const { id } = await params;
 
   const formattedId = Number(id);

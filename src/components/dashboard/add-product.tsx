@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRef, useState } from "react";
 import { useAddProductEvent } from "@/hooks/events";
+import { format } from "date-fns";
 
 type AddProductProps = {
   userId: string;
@@ -30,7 +31,7 @@ const AddProduct = ({ userId }: AddProductProps) => {
     const newProduct = {
       title: formData.get("title") as string,
       description: formData.get("description") as string,
-      date: new Date().toString(),
+      date: format(new Date(), "MM-dd-yyyy"),
       price: Number(formData.get("price")),
       image: formData.get("image") as string,
       user_id: userId,
@@ -47,7 +48,9 @@ const AddProduct = ({ userId }: AddProductProps) => {
     <div className="p-4">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>Add New Product</Button>
+          <Button className="bg-[#1b871b] hover:bg-[#52b452]">
+            Add New Product
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -62,7 +65,11 @@ const AddProduct = ({ userId }: AddProductProps) => {
             <Input name="price" type="number" placeholder="Price" required />
             <Input name="image" type="url" placeholder="Image URL (optional)" />
             <DialogFooter>
-              <Button type="submit" disabled={isPending}>
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="bg-[#1b871b] hover:bg-[#52b452]"
+              >
                 {isPending ? "Creating..." : "Create Product"}
               </Button>
             </DialogFooter>

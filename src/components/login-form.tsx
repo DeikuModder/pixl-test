@@ -22,22 +22,34 @@ export function LoginForm({
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    setError(null); // Clear previous errors on new submission
 
     try {
       const response = await fetch(`/api/login`, {
         method: "POST",
         body: JSON.stringify(userInfo),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
-      if (!response.ok)
-        return console.error("An error happened signing up, try again");
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        setError(
+          errorData.message ||
+            "An error occurred during login. Please try again."
+        );
+        return;
+      }
 
       window.location.href = "/";
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      setError("Network error. Please check your connection and try again.");
     }
   };
 
@@ -61,9 +73,10 @@ export function LoginForm({
                   placeholder="m@example.com"
                   required
                   value={userInfo.email}
-                  onChange={(e) =>
-                    setUserInfo({ ...userInfo, email: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setUserInfo({ ...userInfo, email: e.target.value });
+                    setError(null); // Clear error when user starts typing
+                  }}
                 />
               </div>
               <div className="grid gap-3">
@@ -75,13 +88,22 @@ export function LoginForm({
                   type="password"
                   required
                   value={userInfo.password}
-                  onChange={(e) =>
-                    setUserInfo({ ...userInfo, password: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setUserInfo({ ...userInfo, password: e.target.value });
+                    setError(null); // Clear error when user starts typing
+                  }}
                 />
               </div>
+
+              {error && (
+                <div className="text-red-500 text-sm text-center">{error}</div>
+              )}
+
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
+                <Button
+                  type="submit"
+                  className="bg-[#1b871b] hover:bg-[#52b452] w-full"
+                >
                   Login
                 </Button>
               </div>

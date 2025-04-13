@@ -34,7 +34,7 @@ const LogoutBtn = () => {
       disabled={loading}
       className="flex items-center justify-center p-0 bg-transparent border-none"
     >
-      <LogOut className="text-[#05060c] text-2xl font-light" />
+      <LogOut className=" text-2xl font-light" />
     </button>
   );
 };

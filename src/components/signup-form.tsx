@@ -91,7 +91,10 @@ export function SignupForm({
                 />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
+                <Button
+                  type="submit"
+                  className="bg-[#1b871b] hover:bg-[#52b452] w-full"
+                >
                   Sign up
                 </Button>
               </div>
