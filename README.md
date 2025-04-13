@@ -70,3 +70,18 @@ Demo Accounts:
 - Admin: admin@test.com / test123
 
 - User: test@example.com / test123
+
+### Notes
+
+- Since i've tried to maintain a balance between functionality and features and time, there's a lot of things that could be added to this project to enhance it to a next level, wich i know, so i'll leave them in here in a list, as well as the estimated time i've worked on this
+
+- Estimated time: 12h
+
+- Features that could enhance this projects:
+
+- Categories of products, filter, sorting and search bar
+- Pagination
+- Buy Cart to perform multiple buys
+- Earnings section for Admin dashboard
+- With more time there would have been a more organized and better UI
+- More organization of the code
