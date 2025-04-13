@@ -15,13 +15,15 @@ const UserTransactions = async ({ id }: { id: string }) => {
       {formattedTransactions.map((transaction) => {
         return (
           <article
-            className="w-[300px] h-[400px] border border-muted rounded-2xl p-4 shadow-sm bg-background flex flex-col justify-between gap-2"
+            className="w-[300px] border border-muted rounded-2xl p-4 shadow-sm bg-background flex flex-col justify-between gap-2"
             key={transaction.id}
           >
             <h2 className="text-lg font-bold text-text">
               {transaction.status}
             </h2>
-            <p>{transaction.price}</p>
+            <p className="text-emerald-600 font-semibold">
+              ${transaction.price}
+            </p>
           </article>
         );
       })}

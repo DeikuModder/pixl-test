@@ -192,6 +192,7 @@ const SellingProducts = ({
                 price,
                 id,
                 email,
+                user_id: idFromUser,
               });
               window.location.href = url; // Redirect to Stripe
             } catch (err) {

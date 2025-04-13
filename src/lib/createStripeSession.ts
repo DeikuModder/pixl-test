@@ -4,16 +4,18 @@ export async function createStripeSession({
   price,
   email,
   id,
+  user_id,
 }: {
   title: string;
   price: number;
   email: string;
   id: string;
+  user_id: string;
 }) {
   const res = await fetch("/api/checkout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, price, id, email }),
+    body: JSON.stringify({ title, price, id, email, user_id }),
   });
 
   if (!res.ok) {

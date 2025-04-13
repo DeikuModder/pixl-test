@@ -7,9 +7,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: NextRequest) {
   try {
-    const { title, price, id, email } = await req.json();
+    const { title, price, id, email, user_id } = await req.json();
 
-    if (!title || !price || !id) {
+    if (!title || !price || !id || !user_id) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
       ],
       metadata: {
         event_id: id,
+        user_id,
       },
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,

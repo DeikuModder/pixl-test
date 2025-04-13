@@ -28,9 +28,10 @@ export async function POST(req: NextRequest) {
 
     const metadata = session.metadata;
     const event_id = metadata?.event_id;
+    const user_id = metadata?.user_id ?? "";
 
-    // Simulated user_id — in production you'd store it via metadata or in your DB
-    const user_id = session.customer_email || "guest@example.com";
+    // // Simulated user_id — in production you'd store it via metadata or in your DB
+    // const user_id = session.customer_email || "guest@example.com";
 
     try {
       await prisma.transaction.create({
