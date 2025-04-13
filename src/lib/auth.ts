@@ -1,0 +1,11 @@
+// /lib/auth.ts
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET!;
+
+export function verifyJWT(token: string) {
+  return jwt.verify(token, JWT_SECRET) as {
+    userId: number;
+    role: "admin" | "user";
+  };
+}
